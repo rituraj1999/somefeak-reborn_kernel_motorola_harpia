@@ -2258,7 +2258,6 @@ static ssize_t synaptics_dsx_ud_stat(struct synaptics_rmi4_data *rmi4_data,
 static ssize_t synaptics_rmi4_f01_reset_store(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
-	int retval;
 	unsigned int reset;
 	struct synaptics_rmi4_data *rmi4_data =
 					i2c_get_clientdata(to_i2c_client(dev));
@@ -2269,12 +2268,7 @@ static ssize_t synaptics_rmi4_f01_reset_store(struct device *dev,
 	if (reset != 1)
 		return -EINVAL;
 
-	retval = synaptics_dsx_ic_reset(rmi4_data, RMI4_HW_RESET);
-	if (retval > 0)
-		pr_debug("successful reset took %dms\n", retval);
-	else
-		dev_warn(&rmi4_data->i2c_client->dev, "%s: timed out waiting for idle\n",
-			__func__);
+	synaptics_dsx_ic_reset(rmi4_data, true);
 
 	return count;
 }
