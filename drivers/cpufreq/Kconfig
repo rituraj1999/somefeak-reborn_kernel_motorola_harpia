@@ -209,10 +209,14 @@ config CPU_FREQ_DEFAULT_GOV_BLU_ACTIVE
 	  'interactive' governor for latency-sensitive workloads.
 
 config CPU_FREQ_DEFAULT_GOV_SMARTMAX
- 	bool "smartmax"
- 	select CPU_FREQ_GOV_SMARTMAX
- 	help
- 	  Use the CPUFreq governor 'smartmax' as default
+	bool "smartmax"
+	select CPU_FREQ_GOV_SMARTMAX
+	help
+	  Use the CPUFreq governor 'smartmax' as default
+
+config CPU_FREQ_DEFAULT_GOV_ALUCARD
+	bool "alucard"
+	select CPU_FREQ_GOV_ALUCARD
 
 endchoice
 
@@ -476,10 +480,14 @@ config CPU_FREQ_GOV_BLU_ACTIVE
 	  If in doubt, say N.
 
 config CPU_FREQ_GOV_SMARTMAX
- 	tristate "'smartmax' cpufreq policy governor"
- 	select CPU_FREQ_TABLE
- 	help
- 	  'smartmax' combines ondemand and smartass2
+	tristate "'smartmax' cpufreq policy governor"
+	select CPU_FREQ_TABLE
+	help
+	  'smartmax' combines ondemand and smartass2
+
+config CPU_FREQ_GOV_ALUCARD
+	tristate "'alucard' cpufreq governor"
+	depends on CPU_FREQ 
 
 config GENERIC_CPUFREQ_CPU0
 	tristate "Generic CPU0 cpufreq driver"
