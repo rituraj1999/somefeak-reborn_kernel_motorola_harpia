@@ -33,6 +33,7 @@
 #include <linux/input/doubletap2wake.h>
 #endif
 #include "mdss_livedisplay.h"
+
 #include <linux/hardware_info.h> //req  wuzhenzhen.wt 20140924 add for hardware info
 
 #define MDSS_PANEL_DEFAULT_VER 0xffffffffffffffff
@@ -200,7 +201,7 @@ u32 mdss_dsi_panel_cmd_read(struct mdss_dsi_ctrl_pdata *ctrl, char cmd0,
 	return 0;
 }
 
-static void mdss_dsi_panel_cmds_send(struct mdss_dsi_ctrl_pdata *ctrl,
+void mdss_dsi_panel_cmds_send(struct mdss_dsi_ctrl_pdata *ctrl,
 			struct dsi_panel_cmds *pcmds)
 {
 	struct dcs_cmd_req cmdreq;
@@ -904,21 +905,7 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 	if (ctrl->on_cmds.cmd_cnt)
 		mdss_dsi_panel_cmds_send(ctrl, &ctrl->on_cmds);
 
-	mdss_dsi_panel_cmd_read(ctrl, DCS_CMD_GET_POWER_MODE, 0x00, NULL,
-			&pwr_mode, 1,
-			ctrl->on_cmds.link_state == DSI_HS_MODE ? true : false);
-	if ((pwr_mode & 0x04) != 0x04) {
-		pr_err("%s: Display failure: DISON (0x04) bit not set\n",
-								__func__);
-		dropbox_issue = MDSS_DROPBOX_MSG_PWR_MODE_BLACK;
-
-		if (panel_recovery_retry++ > MDSS_PWR_ON_RETRIES) {
-			pr_err("%s: panel recovery failed for all retries",
-				__func__);
-			BUG();
-		}
-	} else
-		panel_recovery_retry = 0;
+    mdss_livedisplay_update(ctrl, MODE_UPDATE_ALL);
 
 end:
 	pinfo->blank_state = MDSS_PANEL_BLANK_UNBLANK;
@@ -1073,7 +1060,7 @@ static void mdss_dsi_parse_trigger(struct device_node *np, char *trigger,
 }
 
 
-static int mdss_dsi_parse_dcs_cmds(struct device_node *np,
+int mdss_dsi_parse_dcs_cmds(struct device_node *np,
 		struct dsi_panel_cmds *pcmds, char *cmd_key, char *link_key)
 {
 	const char *data;
@@ -2152,34 +2139,7 @@ static int mdss_panel_parse_dt(struct device_node *np,
 
 	mdss_dsi_parse_dfps_config(np, ctrl_pdata);
 
-	data = of_get_property(np, "qcom,mdss-dsi-panel-supplier", NULL);
-	if (!data)
-		memset(pinfo->panel_supplier, '\0',
-			sizeof(pinfo->panel_supplier));
-	else if (strlcpy(pinfo->panel_supplier, data,
-		sizeof(pinfo->panel_supplier)) >=
-		sizeof(pinfo->panel_supplier)) {
-		pr_err("%s: Panel supplier name too large\n", __func__);
-	}
-
-	pinfo->blank_progress_notify_enabled = of_property_read_bool(np,
-				"qcom,mdss-dsi-use-blank-in-progress-notifier");
-
-	if (of_get_property(np, "qcom,mdss-dsi-pre-on-command", NULL)) {
-		rc = mdss_dsi_parse_dcs_cmds(np, &ctrl_pdata->pre_on_cmds,
-			"qcom,mdss-dsi-pre-on-command",
-			"qcom,mdss-dsi-pre-on-command-state");
-		if (rc) {
-			pr_err("%s : Failed parsing pre-on commands, rc = %d\n",
-				__func__, rc);
-			goto error;
-		}
-		if (ctrl_pdata->pre_on_cmds.cmd_cnt)
-			pr_info("%s: pre-on commands configured.\n", __func__);
-	}
-
-	if (mdss_panel_parse_param_prop(np, pinfo, ctrl_pdata))
-		pr_err("Error parsing panel parameter properties\n");
+    mdss_livedisplay_parse_dt(np, pinfo);
 
 	return 0;
 
