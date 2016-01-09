@@ -50,6 +50,25 @@ config INTELLI_PLUG
 	help
 	  This enables kernel based multi core control.
 
+config ALUCARD_HOTPLUG
+	bool "Enable alucard-hotplug cpu hotplug driver"
+	default y
+	help
+	  Generic Alucard-hotplug cpu hotplug driver for ARM SOCs
+
+config MSM_SLEEPER
+	bool "CPU hotplug driver"
+	default y
+	help
+	  CPU hotplug driver
+
+config INTELLI_PLUG
+	bool "Hotplug for Razor Reborn"
+	depends on MSM_RUN_QUEUE_STATS
+	default y
+	help
+	  This enables kernel based multi core control.
+
 config ASMP
  bool "Multi-core automatic hotplug support"
  depends on SMP
@@ -66,6 +85,12 @@ config THUNDERPLUG_QUAD_CONTROL
 	bool "Enable plugging down/up of cores with/without using LCD NOTIFIER"
 	help
 	  This driver doesn't uses LCD NOTIFIER to take down the cpu cores on a device Instead uses simple calculations which are tuned to sit perfectly on a quad core device :).
+
+config MAKO_HOTPLUG
+	bool "Mako Hotplug"
+	default n
+	help
+	  Mako Hotplug: A custom hotplug by fransico franco
 
 config MAKO_HOTPLUG
 	bool "Mako Hotplug"
