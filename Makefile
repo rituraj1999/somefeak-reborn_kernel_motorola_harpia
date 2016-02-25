@@ -2,7 +2,7 @@ VERSION = 3
 PATCHLEVEL = 10
 SUBLEVEL = 104
 EXTRAVERSION = -3.5
-NAME = TOSSUG Baby Fish
+NAME = Welcomen to the heaven
 
 # Added by SQK
 TOP := $(dir $(lastword $(MAKEFILE_LIST)))
