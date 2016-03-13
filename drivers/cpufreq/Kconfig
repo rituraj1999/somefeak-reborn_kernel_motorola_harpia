@@ -273,6 +273,11 @@ config CPU_FREQ_DEFAULT_GOV_PRESERVATIVE
 	help
 	 Use the CPUFreq governor 'preservative' as default.
 
+config CPU_FREQ_DEFAULT_GOV_DESPAIR
+	bool "despair"
+	select CPU_FREQ_GOV_DESPAIR
+	help
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -465,6 +470,10 @@ config CPU_FREQ_GOV_LIONHEART
 
 config CPU_FREQ_GOV_PRESERVATIVE
 	tristate "'preservative' cpufreq governor"
+	depends on CPU_FREQ
+
+config CPU_FREQ_GOV_DESPAIR
+	tristate "'despair' cpufreq governor"
 	depends on CPU_FREQ
 
 config CPU_BOOST
