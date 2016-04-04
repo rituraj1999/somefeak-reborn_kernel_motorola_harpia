@@ -6789,8 +6789,8 @@ void show_state_thread_filter(unsigned long state_filter,
 
 	touch_all_softlockup_watchdogs();
 
-#ifdef CONFIG_SYSRQ_SCHED_DEBUG
-	if (threads_filter & SHOW_KTHREADS)
+#ifdef CONFIG_SCHED_DEBUG
+	if (!state_filter)
 		sysrq_sched_debug_show();
 #endif
 	rcu_read_unlock();
