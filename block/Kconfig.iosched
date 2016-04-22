@@ -187,6 +187,9 @@ choice
 	config DEFAULT_SIOPLUS
 		bool "SIOPLUS" if IOSCHED_SIOPLUS=y
 
+	config DEFAULT_SIO
+		bool "SIO" if IOSCHED_SIO=y
+
 endchoice
 
 config DEFAULT_IOSCHED
@@ -202,6 +205,7 @@ config DEFAULT_IOSCHED
 	default "tripndroid" if DEFAULT_TRIPNDROID
 	default "vr" if DEFAULT_VR 
 	default "sioplus" if DEFAULT_SIOPLUS
+
 endmenu
 
 endif
