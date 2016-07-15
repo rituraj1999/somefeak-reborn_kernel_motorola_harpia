@@ -1,8 +1,7 @@
 /*
- * include/linux/input/doubletap2wake.h
+ * include/linux/input/sweep2wake.h
  *
  * Copyright (c) 2013, Dennis Rassmann <showp1984@gmail.com>
- * Copyright (C) 2016 Carlos Arriaga <carlosarriagadv@gmail.com> (osprey,surnia,merlin-port dt2w)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,11 +18,11 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef _LINUX_DOUBLETAP2WAKE_H
-#define _LINUX_DOUBLETAP2WAKE_H
+#ifndef _LINUX_SWEEP2WAKE_H
+#define _LINUX_SWEEP2WAKE_H
 
-extern bool dt2w_scr_suspended;
-extern bool dt2w_call_activty;
-extern int dt2w_switch;
+extern bool s2w_scr_suspended;
+extern bool s2w_call_activity;
+extern int s2w_switch, s2w_s2sonly;
 
-#endif	/* _LINUX_DOUBLETAP2WAKE_H */
+#endif	/* _LINUX_SWEEP2WAKE_H */
