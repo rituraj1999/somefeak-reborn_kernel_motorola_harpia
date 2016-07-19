@@ -134,12 +134,6 @@ config CPU_FREQ_DEFAULT_GOV_INTERACTIVE
 	  loading your cpufreq low-level hardware driver, using the
 	  'interactive' governor for latency-sensitive workloads.
 
-config CPU_FREQ_DEFAULT_GOV_LIONFISH
-	bool "lionfish"
-	select CPU_FREQ_GOV_LIONFISH
-	help
-	  Use the CPUFreq governor 'lionfish' as default.
-
 config CPU_FREQ_DEFAULT_GOV_IMPULSE
 	bool "impulse"
 	select CPU_FREQ_GOV_IMPULSE
@@ -194,6 +188,12 @@ config CPU_FREQ_DEFAULT_GOV_PEGASUSQ
 	select CPU_FREQ_GOV_PEGASUSQ
 	help
 	Use the CPUFreq governor 'pegasusq' as default.
+
+config CPU_FREQ_DEFAULT_GOV_BIOSHOCK
+	bool "BioShock"
+	select CPU_FREQ_GOV_BIOSHOCK
+	help
+	  Default governor of BioShock kernel
 
 endchoice
 
@@ -393,6 +393,12 @@ config CPU_FREQ_GOV_SMARTMAX_EPS
 
 config CPU_FREQ_GOV_PEGASUSQ
 	tristate "'pegasusq' cpufreq policy governor"
+
+config CPU_FREQ_GOV_BIOSHOCK
+	tristate "'bioshock' cpufreq bioshock"
+	depends on CPU_FREQ
+	help
+	  'bioshock' - More aggressive version of conservative
 
 config CPU_BOOST
 	tristate "Event base short term CPU freq boost"
