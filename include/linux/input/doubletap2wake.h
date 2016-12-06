@@ -1,8 +1,9 @@
 /*
  * include/linux/input/doubletap2wake.h
  *
- * Copyright (c) 2013, Dennis Rassmann <showp1984@gmail.com>
  * Copyright (C) 2016 Carlos Arriaga <carlosarriagadv@gmail.com> (osprey,surnia,merlin-port dt2w)
+ * Copyright (C) 2015 engstk <eng.stk@sapo.pt> (osprey port, fixes and changes)
+ * Copyright (c) 2013, Dennis Rassmann <showp1984@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
