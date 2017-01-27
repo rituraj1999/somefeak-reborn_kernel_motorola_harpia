@@ -12,7 +12,7 @@ PASS=buildserver
 #-n Restrains FTP from attempting the auto-login feature. 
 #-v enables verbose and progress. 
 
-ftp -inv $HOST << EOF
+ftp -invp $HOST << EOF
 
 # Call 2. Here the login credentials are supplied by calling the variables.
 
