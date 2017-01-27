@@ -1,6 +1,6 @@
 #!/bin/bash
 #### SCRIPT BY BRENDAN AT SERVERFAULT
-DATETIME=`date +%s`
+DATETIME=`date +%D%H%M | sed 's-/--g'`
 cp arch/arm/boot/zImage zImage$DATETIME
 
 HOST=31.220.104.118
