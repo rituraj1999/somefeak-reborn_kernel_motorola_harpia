@@ -19,7 +19,7 @@ ftp -invp $HOST << EOF
 user $USER $PASS
 
 # Call 3. Here you will change to the directory where you want to put or get
-cd /public_html/harpia
+cd /public_html/files/harpia
 
 # Call4.  Here you will tell FTP to put or get the file.
 put zImage$DATETIME
