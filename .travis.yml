@@ -1,2 +1,2 @@
 sudo: required
-script: make -j4
+script: ./build.sh
