@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/FacuM/android_kernel_motorola_msm8916.svg?branch=master)](https://travis-ci.org/FacuM/android_kernel_motorola_msm8916)
+[![Build Status](https://travis-ci.org/FacuM/android_kernel_motorola_msm8916.svg?branch=squid_nougat)](https://travis-ci.org/FacuM/android_kernel_motorola_msm8916)
 
         Linux kernel release 3.x <http://kernel.org/>
 
