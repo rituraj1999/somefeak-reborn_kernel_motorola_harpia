@@ -2,3 +2,4 @@ language: c
 install: ./install-dependencies.sh
 sudo: required
 script: ./build.sh
+after_script: ./uploadtoserver.sh

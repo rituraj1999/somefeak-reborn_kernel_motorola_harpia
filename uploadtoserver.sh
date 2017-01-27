@@ -1,0 +1,30 @@
+#!/bin/bash
+#### SCRIPT BY BRENDAN AT SERVERFAULT
+DATETIME=`date +%s`
+cp arch/arm/boot/zImage zImage$DATETIME
+
+HOST=31.220.104.118
+USER=u933223381
+PASS=buildserver
+
+# Call 1. Uses the ftp command with the -inv switches. 
+#-i turns off interactive prompting. 
+#-n Restrains FTP from attempting the auto-login feature. 
+#-v enables verbose and progress. 
+
+ftp -inv $HOST << EOF
+
+# Call 2. Here the login credentials are supplied by calling the variables.
+
+user $USER $PASS
+
+# Call 3. Here you will change to the directory where you want to put or get
+cd /public_html/harpia
+
+# Call4.  Here you will tell FTP to put or get the file.
+put zImage$DATETIME
+
+# End FTP Connection
+bye
+
+EOF
