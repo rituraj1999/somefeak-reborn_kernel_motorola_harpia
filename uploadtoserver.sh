@@ -2,6 +2,7 @@
 #### SCRIPT BY BRENDAN AT SERVERFAULT
 DATETIME=`date +%D%H%M | sed 's-/--g'`
 cp arch/arm/boot/zImage zImage$DATETIME
+cp arch/arm/boot/squid* flashable$DATETIME.zip
 
 # Call 1. Uses the ftp command with the -inv switches. 
 #-i turns off interactive prompting. 
@@ -19,7 +20,7 @@ cd /public_html/files/harpia
 
 # Call4.  Here you will tell FTP to put or get the file.
 put zImage$DATETIME
-
+put flashable$DATETIME.zip
 # End FTP Connection
 bye
 
