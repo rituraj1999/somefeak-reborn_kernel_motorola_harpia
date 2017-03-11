@@ -2525,9 +2525,6 @@ VOS_STATUS WDA_close(v_PVOID_t pVosContext)
                   "VOS Event destroy failed - status = %d", status);
       status = VOS_STATUS_E_FAILURE;
    }
-
-   vos_lock_destroy(&wdaContext->mgmt_pkt_lock);
-
    /* free WDA context */
    vstatus = vos_free_context(pVosContext, VOS_MODULE_ID_WDA, wdaContext);
    if ( !VOS_IS_STATUS_SUCCESS(vstatus) )
@@ -2536,7 +2533,6 @@ VOS_STATUS WDA_close(v_PVOID_t pVosContext)
                                   "error in WDA close " );
       status = VOS_STATUS_E_FAILURE;
    }
-
    return status;
 }
 /*
