@@ -266,6 +266,13 @@ config CPU_FREQ_DEFAULT_GOV_LIONHEART
 	help
           Use the CPUFreq governor 'lionheart' as default.
 
+config CPU_FREQ_DEFAULT_GOV_PRESERVATIVE
+	bool "preservative"
+	select CPU_FREQ_GOV_PRESERVATIVE
+	select CPU_FREQ_GOV_PERFORMANCE
+	help
+	 Use the CPUFreq governor 'preservative' as default.
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -455,6 +462,10 @@ config CPU_FREQ_GOV_LIONHEART
 	help
 	  lionheart' - a "smart" optimized governor!
 	  If in doubt, say N.
+
+config CPU_FREQ_GOV_PRESERVATIVE
+	tristate "'preservative' cpufreq governor"
+	depends on CPU_FREQ
 
 config CPU_BOOST
 	tristate "Event base short term CPU freq boost"
