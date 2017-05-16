@@ -58,6 +58,11 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 	} else {
 		sampling_rate = cs_tuners->sampling_rate;
 		ignore_nice = cs_tuners->ignore_nice_load;
+
+	} if (dbs_data->cdata->governor == GOV_ELEMENTALX) {
+		ignore_nice = ex_tuners->ignore_nice_load;
+	} else {
+		ignore_nice = cs_tuners->ignore_nice_load;
 	}
 
 	policy = cdbs->cur_policy;
