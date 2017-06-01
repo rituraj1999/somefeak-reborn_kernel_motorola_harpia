@@ -1,8 +1,8 @@
 VERSION = 3
 PATCHLEVEL = 10
 SUBLEVEL = 104
-EXTRAVERSION = -3.5
-NAME = Welcomen to the heaven
+EXTRAVERSION = -3.52
+NAME = DT2W fix.
 
 # Added by SQK
 TOP := $(dir $(lastword $(MAKEFILE_LIST)))
