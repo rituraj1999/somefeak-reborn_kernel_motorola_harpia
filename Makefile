@@ -1,8 +1,8 @@
 VERSION = 3
 PATCHLEVEL = 10
 SUBLEVEL = 104
-EXTRAVERSION = -3.81
-NAME = Woah! Bugfixes.
+EXTRAVERSION = -3.82
+NAME = Nothing serious.
 
 # Added by SQK
 TOP := $(dir $(lastword $(MAKEFILE_LIST)))
