@@ -63,6 +63,11 @@ symlink("/system/lib/modules/pronto/pronto_wlan.ko", "/system/lib/modules/wlan.k
 unmount("/system");
 set_progress(0.9);
 
+mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/cache", "/cache");
+ui_print("Wiping cache...");
+delete_recursive("/cache");
+unmount("/cache");
+
 ui_print("Kernel installation completed!");
 set_progress(1.0);
 
