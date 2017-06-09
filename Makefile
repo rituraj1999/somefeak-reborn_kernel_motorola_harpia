@@ -1,8 +1,8 @@
 VERSION = 3
 PATCHLEVEL = 10
 SUBLEVEL = 104
-EXTRAVERSION = -3.90
-NAME = A phone or a USB gadget?
+EXTRAVERSION = -4.00
+NAME = Clocky!
 
 # Added by SQK
 TOP := $(dir $(lastword $(MAKEFILE_LIST)))
