@@ -14,6 +14,7 @@ find squid_install/ -name '*.ko' -type f -exec cp '{}' cwm_flash_zip/system/lib/
 mv cwm_flash_zip/system/lib/modules/wlan.ko cwm_flash_zip/system/lib/modules/pronto/pronto_wlan.ko
 cp arch/arm/boot/zImage cwm_flash_zip/tools/
 cp arch/arm/boot/dt.img cwm_flash_zip/tools/
-rm -f arch/arm/boot/squid_kernel.zip
+VERSION=$(cat Makefile | grep "EXTRAVERSION = -" | sed 's/EXTRAVERSION = -//')
+rm -f arch/arm/boot/SomeFeaK$VERSION.zip
 cd cwm_flash_zip
-zip -r ../arch/arm/boot/squid_kernel.zip ./
+zip -r ../arch/arm/boot/SomeFeaK$VERSION.zip ./
