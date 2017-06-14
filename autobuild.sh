@@ -14,6 +14,17 @@ function buildkernel {
  make -j8 all
  bash build_cwm_zip.sh $DEVCODENAME
 }
+function default {
+ rm -f ".config"
+ printf "\n.config file not existing. Loading defaults...\n"
+ make -j8 $DEVCODENAME_defconfig
+ if [ "$?" -ne 0 ]
+ then
+  exit 1
+ else
+  buildkernel
+ fi
+}
 function yesno {
  printf '\nWould you like to set it up right now? (type Y for 'yes', or N or everything else for 'no'): '
  read YESNO
@@ -58,14 +69,16 @@ fi
 if [ -f ".config" ]
 then
  printf "\n.config file found.\n"
- buildkernel
-else
- printf "\n.config file not existing. Loading defaults...\n"
- make -j8 $DEVCODENAME_defconfig
- if [ "$?" -ne 0 ]
+ # Check if .config file matches requested device.
+ cat .config | grep "$DEVCODENAME" | grep '#'
+ if [ "$?" -eq 1 ]
  then
-  exit 1
- else
+  printf '\nCurrent .config file matches requested device, will keep it untouched.\n'
   buildkernel
+ else
+  printf "\nCurrent .config file isn't matching the requested device. Will remove it and load defaults.\n"
+  default
  fi
+else
+ default
 fi
