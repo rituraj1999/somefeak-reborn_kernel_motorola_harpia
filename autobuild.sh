@@ -31,7 +31,7 @@ fi
 # Check if CROSS_COMPILE (toolchain) is defined.
 if [ -z "$CROSS_COMPILE" ]
 then
- printf '\n$CROSS_COMPILE is not defined. Define it and try again.\n\n  i.e.: CROSS_COMPILE='~/home/yourname/toolchain/bin/arm-eabi-'\n'
+ printf '\n$CROSS_COMPILE is not defined. Define it and try again.\n\n  i.e.: CROSS_COMPILE='~/toolchain/bin/arm-eabi-'\n'
  exit 1
 else
  printf "\nToolchain path: $CROSS_COMPILE\n"
