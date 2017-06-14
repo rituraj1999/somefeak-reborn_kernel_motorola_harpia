@@ -9,7 +9,7 @@ DEVCODENAME="$1"
 # Function definition
 function buildkernel {
  printf '\nClean the build environment.\n'
-# make -j8 clean
+ make -j8 clean
  printf "\nBegin building...\n"
  make -j8 all
  bash build_cwm_zip.sh $DEVCODENAME
@@ -17,7 +17,7 @@ function buildkernel {
 function default {
  rm -f ".config"
  printf "\n.config file not existing. Loading defaults...\n"
- make -j8 $DEVCODENAME_defconfig
+ make -j8 "$DEVCODENAME"_defconfig
  if [ "$?" -ne 0 ]
  then
   exit 1
@@ -70,7 +70,8 @@ if [ -f ".config" ]
 then
  printf "\n.config file found.\n"
  # Check if .config file matches requested device.
- cat .config | grep "$DEVCODENAME" | grep '#'
+ DEVCODENAMEUP=$(printf "$DEVCODENAME" | tr '[:lower:]' '[:upper:]')
+ cat .config | grep "$DEVCODENAMEUP" | grep '#'
  if [ "$?" -eq 1 ]
  then
   printf '\nCurrent .config file matches requested device, will keep it untouched.\n'
