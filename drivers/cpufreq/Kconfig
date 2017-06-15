@@ -200,6 +200,10 @@ config CPU_FREQ_DEFAULT_GOV_HYPER
 	bool "hyper"
 	select CPU_FREQ_GOV_HYPER
 
+config CPU_FREQ_DEFAULT_GOV_INTELLIDEMAND
+	bool "intellidemand"
+	select CPU_FREQ_GOV_INTELLIDEMAND
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -427,28 +431,28 @@ config CPU_BOOST
 	  If in doubt, say N.
 
 config CPU_FREQ_GOV_INTELLIDEMAND
- 	tristate "'intellidemand' cpufreq governor"
- 	depends on CPU_FREQ
+	tristate "'intellidemand' cpufreq governor"
+	depends on CPU_FREQ
 
 config CPU_FREQ_GOV_SMARTMAX
- 	tristate "'smartmax' cpufreq policy governor"
- 	select CPU_FREQ_TABLE
- 	help
- 	  'smartmax' combines ondemand and smartass2
+	tristate "'smartmax' cpufreq policy governor"
+	select CPU_FREQ_TABLE
+	help
+	  'smartmax' combines ondemand and smartass2
 
 config CPU_FREQ_GOV_ALUCARD
- 	tristate "'alucard' cpufreq governor"
- 	depends on CPU_FREQ
+	tristate "'alucard' cpufreq governor"
+	depends on CPU_FREQ
 
 config CPU_FREQ_GOV_WHEATLEY
- 	tristate "'wheatley' cpufreq governor"
- 	depends on CPU_FREQ 
+	tristate "'wheatley' cpufreq governor"
+	depends on CPU_FREQ 
 
 config CPU_FREQ_GOV_HYPER
- 	tristate "'hyper' cpufreq governor"
- 	depends on CPU_FREQ
- 	---help---
- 	  'hyper' - A tweaked "ondemand" based smart and smooth optimized governor!
+	tristate "'hyper' cpufreq governor"
+	depends on CPU_FREQ
+	---help---
+	  'hyper' - A tweaked "ondemand" based smart and smooth optimized governor!
 
 config GENERIC_CPUFREQ_CPU0
 	tristate "Generic CPU0 cpufreq driver"
