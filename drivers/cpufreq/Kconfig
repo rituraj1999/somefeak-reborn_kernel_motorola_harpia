@@ -169,10 +169,6 @@ config CPU_FREQ_DEFAULT_GOV_BLU_ACTIVE
 	  loading your cpufreq low-level hardware driver, using the
 	  'interactive' governor for latency-sensitive workloads.
 
-config CPU_FREQ_DEFAULT_GOV_YANKACTIVE
- 	bool "yankactive"
- 	select CPU_FREQ_GOV_YANKACTIVE
- 	
 config CPU_FREQ_DEFAULT_GOV_INTERACTIVE_PRO
 	bool "interactive_pro"
 	select CPU_FREQ_GOV_INTERACTIVE_PRO
@@ -460,11 +456,6 @@ config CPU_FREQ_GOV_BLU_ACTIVE
 	  module will be called cpufreq_blu_active.
 
 	  If in doubt, say N.
-
-config CPU_FREQ_GOV_YANKACTIVE
- 	tristate "'yankactive' cpufreq policy governor"
- 	help
-   	  'yankactive' - This driver adds a dynamic cpufreq policy governor designed for latency-sensitive workloads. The governor is based on interactive with just different default settings and can be achieved using interactive with a script. This is added for simplification purposes for myself. 
 
 config CPU_FREQ_GOV_HOTPLUG
 	tristate "'hotplug' cpufreq governor"
