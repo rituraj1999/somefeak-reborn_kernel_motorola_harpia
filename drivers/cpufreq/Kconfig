@@ -155,12 +155,6 @@ config CPU_FREQ_DEFAULT_GOV_ALUCARD
 	select CPU_FREQ_GOV_ALUCARD
 	help
 
-config CPU_FREQ_DEFAULT_GOV_HYPER
-	bool "hyper"
-	select CPU_FREQ_GOV_HYPER
-	---help---
-	  Use the CPUFreq governor 'hyper' as default.
-
 config CPU_FREQ_DEFAULT_GOV_YANKACTIVE
 	bool "yankactive"
 	select CPU_FREQ_GOV_YANKACTIVE
@@ -169,10 +163,6 @@ config CPU_FREQ_DEFAULT_GOV_YANKACTIVE
 	  you to get a full dynamic cpu frequency capable system by simply
 	  loading your cpufreq low-level hardware driver, using the
 	  'yankactive' governor for latency-sensitive workloads.
-
-config CPU_FREQ_DEFAULT_GOV_BLU_ACTIVE
-	bool "blu_active"
-	select CPU_FREQ_GOV_BLU_ACTIVE
 
 config CPU_FREQ_DEFAULT_GOV_SMARTMAX_EPS
         bool "smartmax_eps"
@@ -329,14 +319,6 @@ config CPU_FREQ_GOV_IMPULSE
 
 	  If in doubt, say N.
 
-config CPU_FREQ_GOV_HYPER
-	tristate "'hyper' cpufreq governor"
-	depends on CPU_FREQ
-	---help---
-	  'hyper' - a tweaked "ondemand" based smart and smooth optimized governor!
-
-	  If in doubt, say Y
-  
 config CPU_FREQ_GOV_YANKACTIVE
 	tristate "'yankactive' cpufreq policy governor"
 	help
@@ -409,9 +391,6 @@ config CPU_FREQ_GOV_LIONFISH
 	  module will be called cpufreq_lionfish.
 
 	  If in doubt, say N.
-
-config CPU_FREQ_GOV_BLU_ACTIVE
-	tristate "'blu_active' cpufreq policy governor"
 
 config CPU_FREQ_GOV_SMARTMAX_EPS
         tristate "'smartmax EPS' cpufreq policy governor"
