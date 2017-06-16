@@ -30,31 +30,9 @@
 #include "mdss_fb.h"
 #include "mdss_dropbox.h"
 
-#ifdef CONFIG_TOUCHSCREEN_SWEEP2WAKE
-#include <linux/input/sweep2wake.h>
-#endif
-
 #ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
 #include <linux/input/doubletap2wake.h>
 #endif
-
-#define DT_CMD_HDR 6
-#define DROPBOX_DISPLAY_ISSUE "display_issue"
-#define ESD_DROPBOX_MSG "ESD event detected"
-#define ESD_TE_DROPBOX_MSG "ESD TE event detected"
-#define ESD_SENSORHUB_DROPBOX_MSG "ESD sensorhub detected"
-#define PWR_MODE_BLACK_DROPBOX_MSG "PWR_MODE black screen detected"
-#define PWR_MODE_FAIL_DROPBOX_MSG "PWR_MODE read failure"
-#define PWR_MODE_INVALID_DROPBOX_MSG "PWR_MODE invalid mode detected"
-#define PWR_MODE_MISMATCH_DROPBOX_MSG "PWR_MODE mis-match sensorhub reported"
-
-/*
- * MDSS_PANEL_ESD_SELF_TRIGGER is triggered ESD recovery depending how many
- * times of MDSS_PANEL_ESD_CNT_MAX detection
- */
-/* #define MDSS_PANEL_ESD_SELF_TRIGGER  1 */
-#define MDSS_PANEL_ESD_CNT_MAX 3
-#define MDSS_PANEL_ESD_TE_TRIGGER (MDSS_PANEL_ESD_CNT_MAX * 2)
 
 #define MDSS_PANEL_DEFAULT_VER 0xffffffffffffffff
 #define MDSS_PANEL_UNKNOWN_NAME "unknown"
@@ -885,15 +863,6 @@ end:
 	return 0;
 }
 
-#ifdef CONFIG_TOUCHSCREEN_SWEEP2WAKE
-extern bool s2w_scr_suspended;
-extern bool s2w_call_activity;
-#endif
-#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
-extern bool dt2w_call_activity;
-extern bool dt2w_scr_suspended;
-#endif
-
 static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 {
 	
@@ -959,17 +928,9 @@ end:
 		dropbox_count = 0;
 
 	pr_info("%s-. Pwr_mode(0x0A) = 0x%x\n", __func__, pwr_mode);
-
-#ifdef CONFIG_TOUCHSCREEN_SWEEP2WAKE
-	if (s2w_switch == 1) {
-		if (!s2w_call_activity)
-			s2w_scr_suspended = false;
-	}
-#endif
 #ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
-	if (dt2w_switch > 0) {
-		if (!dt2w_call_activity)
-			dt2w_scr_suspended = false;
+	if (prevent_sleep) {
+	dt2w_scr_suspended = false;
 	}
 #endif
 	return 0;
@@ -1064,18 +1025,6 @@ static int mdss_dsi_panel_low_power_config(struct mdss_panel_data *pdata,
 
 	pr_debug("%s:-\n", __func__);
 
-#ifdef CONFIG_TOUCHSCREEN_SWEEP2WAKE
-	if (s2w_switch == 1) {
-		if (!s2w_call_activity)
-			s2w_scr_suspended = true;
-	}
-#endif
-#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
-	if (dt2w_switch > 0) {
-		if (!dt2w_call_activity)
-			dt2w_scr_suspended = true;
-	}
-#endif
 	return 0;
 }
 

@@ -507,10 +507,6 @@ struct synaptics_rmi4_data {
 	atomic_t touch_stopped;
 	bool flash_enabled;
 	bool ic_on;
-#ifdef CONFIG_TOUCHSCREEN_PREVENT_SLEEP
-	bool prevent_sleep;
-#endif
-	bool touch_stopped;
 	bool fingers_on_2d;
 	bool input_registered;
 	bool in_bootloader;
@@ -539,17 +535,6 @@ struct synaptics_rmi4_data {
 	struct synaptics_dsx_patchset *default_mode;
 	struct synaptics_dsx_patchset *alternate_mode;
 	struct synaptics_dsx_patchset *current_mode;
-
-#define SYNAPTICS_DSX_STATES { \
-	DSX(UNKNOWN), \
-	DSX(ACTIVE), \
-	DSX(PREVENT_SLEEP), \
-	DSX(STANDBY), \
-	DSX(SUSPEND), \
-	DSX(BL), \
-	DSX(INIT), \
-	DSX(FLASH), \
-	DSX(INVALID) }
 
 	struct work_struct resume_work;
 
