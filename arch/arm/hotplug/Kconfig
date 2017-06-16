@@ -43,31 +43,11 @@ config MSM_SLEEPER
 	help
 	  CPU hotplug driver
 
-config INTELLI_PLUG
-	bool "Hotplug for Razor Reborn"
-	depends on MSM_RUN_QUEUE_STATS
-	default y
-	help
-	  This enables kernel based multi core control.
-
-config ALUCARD_HOTPLUG
-	bool "Enable alucard-hotplug cpu hotplug driver"
-	default y
-	help
-	  Generic Alucard-hotplug cpu hotplug driver for ARM SOCs
-
 config MSM_SLEEPER
 	bool "CPU hotplug driver"
 	default y
 	help
 	  CPU hotplug driver
-
-config INTELLI_PLUG
-	bool "Hotplug for Razor Reborn"
-	depends on MSM_RUN_QUEUE_STATS
-	default y
-	help
-	  This enables kernel based multi core control.
 
 config ASMP
  bool "Multi-core automatic hotplug support"

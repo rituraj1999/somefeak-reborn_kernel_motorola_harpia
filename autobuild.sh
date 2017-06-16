@@ -6,10 +6,16 @@
 # ===================================== #
 # Variable definition
 DEVCODENAME="$1"
+ARG="$2"
 # Function definition
 function buildkernel {
+if [ "$ARG" != '-nc' ]
+then
  printf '\nClean the build environment.\n'
  make -j8 clean
+else
+ printf '\n'-nc' argument found, not cleaning...\n'
+fi
  printf "\nBegin building...\n"
  make -j8 all
  bash build_cwm_zip.sh $DEVCODENAME
