@@ -41,6 +41,12 @@ function yesno {
   exit 1
  fi
 }
+# Test if asking for help
+if [ "$1" == '--help' ] || [ "$1" == -h ]
+then
+ printf "\nUsage: \n\n\nNormal usage: \n\nbash autobuild.sh <devicecodename>\n    i.e.: bash autobuild.sh harpia\n\nYou can also tell the script not to clean the build environment: \n\n bash autobuild.sh <devicecodename> -nc\n    i.e.: bash autobuild.sh harpia -nc\n\n"
+ exit 0
+fi
 # Check if user wrote device name.
 if [ -z "$1" ]
 then
