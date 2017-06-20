@@ -33,12 +33,14 @@ of this repo and explanations about why they're there, it's usage, etc.
 
    bash build_cwm_zip.sh devicecodename
 
-     i.e.: bash build_cwm_zip.sh harpia
+    i.e.: 
+
+       bash build_cwm_zip.sh harpia
 
    The device codename will be attached as a suffix for the zip file. That
    way, using it as the example would leave a file like this:
 
-     arch/arm/boot/SomeFeaKX.XX-harpia.zip
+       arch/arm/boot/SomeFeaKX.XX-harpia.zip
 
  OTHER SCRIPTS (REPO DEPENDENT)
 
@@ -63,28 +65,30 @@ you'll get to successfully remember all the steps.
 
      CROSS_COMPILE='path/to/toolchain/bin/arm-eabi-'
 
-       i.e.: CROSS_COMPILE='/home/yourname/arm-eabi-4.8/bin/arm-eabi-'
+     i.e.: 
+
+       CROSS_COMPILE='/home/yourname/arm-eabi-4.8/bin/arm-eabi-'
 
  - Now define the variable that tells the compiler for which architecture
    compile:
 
-     ARCH='arm'
+       ARCH='arm'
 
  - Clean the source:
 
-     make -j8 clean
+       make -j8 clean
 
  - Select needed features:
 
-     make -j8 menuconfig
+       make -j8 menuconfig
 
  - Once done, you can now build:
 
-     make -j8 all
+       make -j8 all
 
  - If successful, you'll get a kernel image (zImage). Test it:
 
-     fastboot boot arch/arm/boot/zImage
+       fastboot boot arch/arm/boot/zImage
 
 That's all I can add. Hope I helped and wish you the best.
 
