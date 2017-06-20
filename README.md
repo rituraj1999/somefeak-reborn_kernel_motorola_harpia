@@ -1,5 +1,56 @@
 [![Build Status](https://travis-ci.org/FacuM/android_kernel_motorola_msm8916.svg?branch=squid_nougat)](https://travis-ci.org/FacuM/android_kernel_motorola_msm8916)
 
+SCRIPTING
+
+This is a paragraph to talk about the scripts that were added to the source
+of this repo and explanations about why they're there, it's usage, etc.
+
+ USER-ORIENTED AND INTERACTIVE
+
+ - autobuild.sh is a script written for everyone who wants to get the 
+   compilation process to be as easier as it can be. It might be improved over
+   time.
+
+   USAGE
+
+   Building in a clean environment (default behavior):
+   
+   bash autobuild.sh devicecodename
+
+     i.e.: bash autobuild.sh harpia
+
+   You can also build in a dirty environment, at your own risk as follows:
+
+   bash autobuild.sh devicecodename -nc
+
+     i.e.: bash autobuild.sh harpia -nc
+
+ - build_cwm_zip.sh has been written initially by squid and then modified
+   to make it able to process some arguments and read versioning info to
+   attach it to the zip filename.
+
+   USAGE
+
+   bash build_cwm_zip.sh devicecodename
+
+     i.e.: bash build_cwm_zip.sh harpia
+
+   The device codename will be attached as a suffix for the zip file. That
+   way, using it as the example would leave a file like this:
+
+     arch/arm/boot/SomeFeaKX.XX-harpia.zip
+
+ OTHER SCRIPTS (REPO DEPENDENT)
+
+ - install-dependencies.sh instructs the build bot on what to install
+   to get the environment ready, as by default it lacks some required tools.
+
+ - build.sh tells the build bot which commands to use to get the kernel to
+   successfully compile.
+
+ - uploadtoserver.sh includes the required commands to upload the final
+   zImage after compilation as an experimental build to a FTP server.
+
         Linux kernel release 3.x <http://kernel.org/>
 
 These are the release notes for Linux version 3.  Read them carefully,
