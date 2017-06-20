@@ -51,6 +51,43 @@ of this repo and explanations about why they're there, it's usage, etc.
  - uploadtoserver.sh includes the required commands to upload the final
    zImage after compilation as an experimental build to a FTP server.
 
+ MANUAL COMPILATION
+
+The manual compilation process might be pretty tricky, but as time passes
+you'll get to successfully remember all the steps.
+
+ - Download a toolchain, recommended toolchains are UberTC and Linaro 
+   you can refer to the build.sh file to fetch the currently used one.
+
+ - After downloading a toolchain, define it in the CROSS_COMPILE variable:
+
+     CROSS_COMPILE='path/to/toolchain/bin/arm-eabi-'
+
+       i.e.: CROSS_COMPILE='/home/yourname/arm-eabi-4.8/bin/arm-eabi-'
+
+ - Now define the variable that tells the compiler for which architecture
+   compile:
+
+     ARCH='arm'
+
+ - Clean the source:
+
+     make -j8 clean
+
+ - Select needed features:
+
+     make -j8 menuconfig
+
+ - Once done, you can now build:
+
+     make -j8 all
+
+ - If successful, you'll get a kernel image (zImage). Test it:
+
+     fastboot boot arch/arm/boot/zImage
+
+That's all I can add. Hope I helped and wish you the best.
+
         Linux kernel release 3.x <http://kernel.org/>
 
 These are the release notes for Linux version 3.  Read them carefully,
