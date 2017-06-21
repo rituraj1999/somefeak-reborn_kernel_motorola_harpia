@@ -2274,7 +2274,6 @@ static tANI_BOOLEAN csrIsBetterBssInCongestion(tCsrScanResult *pBss1,
     return (ret);
 }
 #endif
->>>>>>> cbac7cf... wlan: Update roam cached channel list to FW
 
 //To check whther pBss1 is better than pBss2
 static tANI_BOOLEAN csrIsBetterBss(tCsrScanResult *pBss1, tCsrScanResult *pBss2)
