@@ -1,3 +1,2 @@
 #!/bin/bash
-sudo apt-get -y install tar
-sudo apt-get -y install wget
+sudo apt-get -y install tar wget build-essential
