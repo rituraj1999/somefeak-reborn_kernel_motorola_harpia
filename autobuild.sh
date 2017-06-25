@@ -11,19 +11,23 @@ ARG="$2"
 function buildkernel {
 if [ "$ARG" != '-nc' ]
 then
- printf '\nClean the build environment.\n'
+ printf '\nCleaning the build environment...\n'
  make -j8 clean
+ printf '\nDone cleaning...\n'
 else
  printf '\n'-nc' argument found, not cleaning...\n'
 fi
- printf "\nBegin building...\n"
+ printf "\nBegin building kernel...\n"
  make -j8 all
+ printf "\nDone building kernel...\n"
+ printf "\nBuilding flashable ZIP...\n"
  bash build_cwm_zip.sh $DEVCODENAME
+ printf "\nDone building flashable ZIP...\n"
 }
 function default {
  rm -f ".config"
  printf "\n.config file not existing. Loading defaults...\n"
- make -j8 "$DEVCODENAME"_defconfig
+ make -j8 "$DEVCODENAME_defconfig"
  if [ "$?" -ne 0 ]
  then
   exit 1
