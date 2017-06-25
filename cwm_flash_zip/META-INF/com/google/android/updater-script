@@ -77,10 +77,8 @@ ui_print("Checking if you requested bootlogo...");
 if
  file_getprop("/tmp/aroma/menu.prop","selected") == "1"
 then
- mount("f2fs", "EMMC", "/dev/block/bootdevice/by-name/data", "/data");
  ui_print("Flashing logo...");
  run_program("/tmp/flash_logo.sh");
- unmount("/data");
 endif;
 if
  file_getprop("/tmp/aroma/menu.prop","selected") == "2"
