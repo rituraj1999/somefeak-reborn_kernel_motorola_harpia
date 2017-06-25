@@ -6,23 +6,29 @@ then
  exit 1
 else
  DEVCDN="$1"
+ if [ "$DEVCDN" == 'harpia' ]
+ then
+  ZIPPATH='cwm_flash_zip'
+ else
+  ZIPPATH='cwm_flash_zip_nla'
+ fi
  rm -f arch/arm/boot/dts/*.dtb
  rm -f arch/arm/boot/dt.img
- rm -f cwm_flash_zip/boot.img
+ rm -f "$ZIPPATH/boot.img"
  make ARCH=arm -j10 zImage
  make ARCH=arm -j10 dtimage
  make ARCH=arm -j10 modules
  rm -rf squid_install
  mkdir -p squid_install
  make ARCH=arm -j10 modules_install INSTALL_MOD_PATH=squid_install INSTALL_MOD_STRIP=1
- mkdir -p cwm_flash_zip/system/lib/modules/pronto
- find squid_install/ -name '*.ko' -type f -exec cp '{}' cwm_flash_zip/system/lib/modules/ \;
- mv cwm_flash_zip/system/lib/modules/wlan.ko cwm_flash_zip/system/lib/modules/pronto/pronto_wlan.ko
- cp arch/arm/boot/zImage cwm_flash_zip/tools/
- cp arch/arm/boot/dt.img cwm_flash_zip/tools/
+ mkdir -p "$ZIPPATH/system/lib/modules/pronto"
+ find squid_install/ -name '*.ko' -type f -exec cp '{}' "$ZIPPATH/system/lib/modules/" \;
+ mv "$ZIPPATH/system/lib/modules/wlan.ko" "$ZIPPATH/system/lib/modules/pronto/pronto_wlan.ko"
+ cp arch/arm/boot/zImage "$ZIPPATH/tools/"
+ cp arch/arm/boot/dt.img "$ZIPPATH/tools/"
  VERSION=$(cat Makefile | grep "EXTRAVERSION = -" | sed 's/EXTRAVERSION = -//')
  rm -f "arch/arm/boot/SomeFeaK$VERSION-$DEVCDN.zip"
- cd cwm_flash_zip
+ cd "$ZIPPATH"
  zip -r "../arch/arm/boot/SomeFeaK$VERSION-$DEVCDN.zip" ./
  exit 0
 fi
