@@ -27,7 +27,7 @@ fi
 function default {
  rm -f ".config"
  printf "\n.config file not existing. Loading defaults...\n"
- make -j8 "$DEVCODENAME_defconfig"
+ make -j8 "$DEVCODENAME"_defconfig
  if [ "$?" -ne 0 ]
  then
   exit 1
