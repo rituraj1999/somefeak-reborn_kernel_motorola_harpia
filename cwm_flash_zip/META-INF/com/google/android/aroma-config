@@ -106,6 +106,29 @@ menubox(
     "SomeFeaK",
   
   #-- Sub Title
+    "Are you using Dirty Unicorns?",
+  
+  #-- Icon
+    "@apps",
+    
+  #-- Will be saved in /tmp/aroma/demo.prop
+    "menu2.prop",
+    
+  #-------------------------+-----------------[ Menubox Items ]-------------------------+---------------#
+  # TITLE                   |  SUBTITLE                                                 |   Item Icons  #
+  #-------------------------+-----------------------------------------------------------+---------------#
+  
+    "Yes",                     "Flash repacked patched boot.img.",          "@default",      #-- selected = 1
+    "No",                      "Continue with normal flash.",               "@default"       #-- selected = 2
+);
+
+ini_set("text_next", "Next");
+
+menubox(
+  #-- Title
+    "SomeFeaK",
+  
+  #-- Sub Title
     "Please mark the next tick if you want to flash our official bootlogo.",
   
   #-- Icon
