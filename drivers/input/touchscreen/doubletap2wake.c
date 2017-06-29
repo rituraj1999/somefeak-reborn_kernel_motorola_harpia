@@ -53,10 +53,10 @@ MODULE_LICENSE("GPLv2");
 
 /* Resources */
 int dt2w_switch = DT2W_DEFAULT;
-bool dt2w_scr_suspended = false;
+bool dt2w_scr_suspended = true;
 bool in_phone_call = false;
 static cputime64_t tap_time_pre = 0;
-static int touch_x = 0, touch_y = 0, touch_nr = 0, x_pre = 0, y_pre = 0;
+static int touch_x = 0, touch_y = 0, touch_nr = 1, x_pre = 0, y_pre = 0;
 static bool touch_x_called = false, touch_y_called = false, touch_cnt = true;
 static bool exec_count = true;
 static struct input_dev * doubletap2wake_pwrdev;
@@ -138,10 +138,7 @@ static void detect_doubletap2wake(int x, int y, bool st)
         pr_info(LOGTAG"x,y(%4d,%4d) single:%s\n",
                 x, y, (single_touch) ? "true" : "false");
 #endif
-	if (x < 100 || x > 980)
-        	return;
-
-	if (dt2w_switch < 2 && y < 1000)
+	if ((dt2w_switch == 0) || (dt2w_switch == 1 && y < 480))
         	return;
 
 	if ((single_touch) && (dt2w_switch > 0) && (exec_count) && (touch_cnt)) {
@@ -390,3 +387,5 @@ static void __exit doubletap2wake_exit(void)
 
 module_init(doubletap2wake_init);
 module_exit(doubletap2wake_exit);
+
+
