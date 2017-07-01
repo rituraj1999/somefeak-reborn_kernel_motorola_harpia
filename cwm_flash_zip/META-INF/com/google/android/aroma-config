@@ -63,7 +63,6 @@ viewbox(
     "<~welcome.text2>\n\n"+
 	
       "  <~welcome.version>\t: <b><#selectbg_g>"+ini_get("rom_version")+"</#></b>\n"+
-      "  <~welcome.codename>\t\t: <b><#selectbg_g>Flamboyan Beta</#></b>\n"+
       "  <~welcome.updated>\t\t: <b><#selectbg_g>"+ini_get("rom_date")+"</#></b>\n\n\n"+
 
     "<~welcome.next>",
