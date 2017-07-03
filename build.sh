@@ -10,5 +10,7 @@ CROSS_COMPILE='~/arm-eabi-5.3/bin/arm-eabi-'
 # Go back to the previously saved working dir.
 cd "$PREVDIR"
 # Now build.
+export LD_LIBRARY_PATH="/usr/local/lib"
+sudo ldconfig
 make ARCH='arm' CROSS_COMPILE='~/arm-eabi-5.3/bin/arm-eabi-' -j8 all
 # bash build_cwm_zip.sh
