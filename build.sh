@@ -1,11 +1,14 @@
 #!/bin/bash
-# wget "https://github.com/FacuM/android_kernel_motorola_msm8916/blob/squid_nougat/arm-cortex_a7-linux-gnueabihf-linaro_4.9.4-2015.06-build_2015_07_15.tar.xz?raw=true"
+# Save previous dir (unknown before boot).
 PREVDIR="$PWD"
+# Go to the also random home dir.
 cd ~
-git clone https://bitbucket.org/UBERTC/arm-eabi-6.0.git
-# cp -Rfv arm-eabi-4.9/libexec ../libexec
-# mv "arm-cortex_a7-linux-gnueabihf-linaro_4.9.4-2015.06-build_2015_07_15.tar.xz?raw=true" "arm-cortex_a7-linux-gnueabihf-linaro_4.9.3-2015.03-build_2015_03_15.tar.xz"
-# tar -xvf arm-cortex_a7-linux-gnueabihf-linaro_4.9.3-2015.03-build_2015_03_15.tar.xz
+# Clone UberTC 5.3.
+git clone https://bitbucket.org/UBERTC/arm-eabi-5.3.git
+# Define CROSS_COMPILE variable properly as it might be used again later.
+CROSS_COMPILE='~/arm-eabi-5.3/bin/arm-eabi-'
+# Go back to the previously saved working dir.
 cd "$PREVDIR"
-make ARCH='arm' CROSS_COMPILE='arm-eabi-6.0/bin/arm-eabi-' -j8 all
+# Now build.
+make ARCH='arm' CROSS_COMPILE='~/arm-eabi-5.3/bin/arm-eabi-' -j8 all
 # bash build_cwm_zip.sh
