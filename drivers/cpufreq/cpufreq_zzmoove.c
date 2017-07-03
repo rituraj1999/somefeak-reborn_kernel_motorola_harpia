@@ -7791,8 +7791,9 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 #endif /* ENABLE_SNAP_THERMAL_SUPPORT */
 
 	    // ZZ: Sampling down momentum - if momentum is inactive switch to 'down_skip' method
-	    if (zz_sampling_down_max_mom == 0 && zz_sampling_down_factor > 1)
+	    if (zz_sampling_down_max_mom == 0 && zz_sampling_down_factor > 1) {
 		this_dbs_info->down_skip = 0;
+		}
 
 		// ZZ: Frequency Limit: if we are at freq_limit break out early
 		if (dbs_tuners_ins.freq_limit != 0
