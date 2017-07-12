@@ -30,8 +30,6 @@
 #include <linux/err.h>
 #include <linux/slab.h>
 
-#include <mach/omap4-common.h>
-#include <plat/common.h>
 
 /* greater than 80% avg load across online CPUs increases frequency */
 #define DEFAULT_UP_FREQ_MIN_LOAD			(60)
