@@ -54,7 +54,6 @@ set_perm(0, 0, 0777, "/tmp/mkbootimg");
 set_perm(0, 0, 0777, "/tmp/unpackbootimg");
 set_perm(0, 0, 0777, "/tmp/flash_kernel.sh");
 set_perm(0, 0, 0777, "/tmp/flash_kernel_patch.sh");
-set_perm(0, 0, 0777, "/tmp/flash_logo.sh");
 set_progress(0.2);
 
 ui_print("Checking if you requested DU patch...");
@@ -103,7 +102,7 @@ if
  file_getprop("/tmp/aroma/menu.prop","selected") == "1"
 then
  ui_print("Flashing logo...");
- run_program("/tmp/flash_logo.sh");
+ package_extract_file("tools/logo.bin", "/dev/block/bootdevice/by-name/logo");
 endif;
 if
  file_getprop("/tmp/aroma/menu.prop","selected") == "2"
