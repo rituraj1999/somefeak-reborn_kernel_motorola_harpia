@@ -31,7 +31,7 @@ else
  cd "$ZIPPATH"
  zip -r "../arch/arm/boot/SomeFeaK$VERSION-$DEVCDN.zip" ./
  cd ..
- mkdir -p builds/
- mv "arch/arm/boot/SomeFeaK$VERSION-$DEVCDN.zip" ./builds/
+ mkdir -p ../builds/
+ mv "arch/arm/boot/SomeFeaK$VERSION-$DEVCDN.zip" ../builds/
  exit 0
 fi
