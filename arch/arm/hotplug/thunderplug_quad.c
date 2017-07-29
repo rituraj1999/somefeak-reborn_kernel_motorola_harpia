@@ -1,5 +1,5 @@
 /* Copyright (c) 2015, Varun Chitre <varun.chitre15@gmail.com>
- * 
+ *
  * Tuned for Quad-Core Cpu by dev-harsh1998 <harshitjain6751@gmail.com> (msm8916)
  *
  * This software is licensed under the terms of the GNU General Public
@@ -19,12 +19,12 @@
 #include <linux/init.h>
 #include <linux/device.h>
 #include <linux/input.h>
-#include <linux/slab.h> 
+#include <linux/slab.h>
 #include <linux/cpu.h>
 #include <linux/lcd_notify.h>
 #include <linux/cpufreq.h>
 
-static int suspend_cpu_num = 1, resume_cpu_num = 4;
+static int suspend_cpu_num = 2, resume_cpu_num = 4;
 static int endurance_level = 0;
 static int device_cpus = 4;
 static int core_limit = 4;
@@ -42,7 +42,7 @@ struct notifier_block lcd_worker;
 
 #define CPU_LOAD_THRESHOLD        (57) //Msm8916 power up early at 55 % because already cpus are weak in load handling
 
-#define DEF_SAMPLING_MS			(300)
+#define DEF_SAMPLING_MS			(250)
 
 static int sampling_time = DEF_SAMPLING_MS;
 static int load_threshold = CPU_LOAD_THRESHOLD;
