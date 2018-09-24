@@ -14,7 +14,7 @@ sudo ldconfig
 export USE_CCACHE=1
 export DEVICE="harpia"
 export KBUILD_BUILD_USER="srfarias"
-export KBUILD_BUILD_HOST="mau"
+export KBUILD_BUILD_HOST="sm-reborn"
 export FINAL_ZIP="$KNAME"-"$DEVICE"_"$DATE".zip
 
 # Sanity check to avoid using erroneous binaries
