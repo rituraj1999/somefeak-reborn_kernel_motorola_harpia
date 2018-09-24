@@ -3,7 +3,7 @@
 KDIR=$PWD
 SRKDIR=~/srfariaskmau
 TCDIR=~/arm-eabi-5.3/bin/arm-eabi-
-DATE=$(date +"%m%d%y")
+DATE=$(date +"%y%m%d")
 KNAME="SomeFeak-Reborn"
 
 export ARCH=arm
@@ -26,10 +26,6 @@ make clean && make mrproper
 echo "==> Making kernel binary..."
 make harpia_defconfig
 make -j3 zImage |& tee -a fail.log
-if [ ${PIPESTATUS[0]} -ne 0 ] ; then
-	echo "!!! Kernel compilation failed, can't continue !!!"
-	exit 2
-fi
 
 echo "=> Making DTBs..."
 make -j3 dtimage|& tee -a fail.log
@@ -49,7 +45,7 @@ echo "=> Finding modules"
 
 find srfarias_install/ -name '*.ko' -type f -exec cp '{}' "$SRKDIR/system/lib/modules/" \;
 
-cp  $KDIR/arch/$ARCH/boot/zImage $SRKDIR/tools/
+cp  $KDIR/arch/arm/boot/zImage $SRKDIR/tools/
 
 cp $KDIR/arch/arm/boot/dt.img $SRKDIR/tools/
 
